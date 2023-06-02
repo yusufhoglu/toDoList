@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/styles.css">
+    <title>Document</title>
+</head>
+<body>    
+    <main class="item-list">
+        <h1><%=title%></h1>                 
+        <a href="/">HOMEPAGE</a>
+        <% if (List.Items.length >= 0) { %>
+            <% List.Items.forEach(function(items) { %>
+                <form action="/delete" method="post">
+                    <ul class="item-row">
+                        <a href="/<%=items._id%>"><%=items.Item%></a>
+                        <input type="hidden" name="id" value="<%=List._id%>">
+                        <button type="submit" name="itemId" value= "<%= items._id %>"">delete</button>
+                    </ul>
+                </form>
+                <hr>
+            <% }) %>
+        <% } %>
+        <form action="/" method="post">
+            <input type="text" name="newTitle" placeholder="New Item">
+            <button type="submit" name="listId" value="<%=List._id%>">add new item</button>
+        </form>
+    </main>
+</body>
+</html>
